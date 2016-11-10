@@ -2,13 +2,49 @@
 <html>
 <head>
   <title>Tastebud</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 </head>
 <body>
 
-<%= yield %>
+<header class="navbar navbar-default" role="navigation">
+  <div class="navbar-inner">
+    <div class="container">
+      <div id="logo" class="navbar-brand"><%= link_to "Tastebud", root_path %></div>
+      <nav class="collapse navbar-collapse navbar-ex1-collapse">
+        <% if user_signed_in? -%>
+            <ul class="nav navbar-nav navbar-right">
 
+              <li><a href="<%= edit_user_registration_path %>">Account</a></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+            </ul>
+            </li>
+            </ul>
+        <% else -%>
+            <ul class="nav navbar-nav pull-right">
+              <li><a id="head" href="<%= new_user_registration_path %>">Sign up</a></li>
+              <li><a id="head" href="<%= new_user_session_path %>">Sign in</a></li>
+            </ul>
+        <% end -%>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div id="main_content" class="container">
+  <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert alert-info") %>
+
+      <div id="tastebud_messages"></div>
+      <div id="content" class="col-md-9 center-block">
+
+  <% end %>
+  <%= yield %>
+  </div>
+  </div>
+</div>
 </body>
 </html>

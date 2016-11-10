@@ -1,0 +1,24 @@
+<%= form_tag "/create_category",  class: "form-horizontal" do -%>
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>category</legend>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="category">Create Category</label>
+        <div class="col-md-4">
+          <input id="category" name=category[category_type] placeholder="category" class="form-control input-md" required="" type="text">
+
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">submit</button>
+        </div>
+      </div>
+
+    </fieldset>
+<% end -%>
+

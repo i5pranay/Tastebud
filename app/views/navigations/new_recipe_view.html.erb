@@ -1,0 +1,54 @@
+<%= form_tag @create_recipe ,class: "form-horizontal" ,:html => {:multipart => true} do -%>
+  <fieldset>
+
+    <!-- Form Name -->
+    <legend>Add Dish</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="title">Dish Name</label>
+      <div class="col-md-4">
+        <input id="recipe_name" name="recipe[recipe_name]" placeholder="recipe name" class="form-control input-md" required="" type="text">
+
+      </div>
+    </div>
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">Choose category</label>
+      <div class="col-md-4">
+        <select id="category" name="recipe[category_id]" class="form-control">
+          <% @categories.each do |c| %>
+              <option value=<%= "#{c.id}" %>><%= c.category_type %></option>
+          <% end %>
+          </select>
+      </div>
+    </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="content">Description</label>
+          <div class="col-md-4">
+            <textarea id="recipe_name" type="text" name="recipe[content]" placeholder="Write your recipe" class="form-control input-md" required="" type="text">
+            </textarea>
+          </div>
+        </div>
+
+    <!-- File Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="filebutton">Image File</label>
+      <div class="col-md-4">
+        <input id="filebutton" name="recipe[recipe_img]" class="input-file" type="file">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-4">
+        <button id="submit" name="submit" class="btn btn-primary">submit</button>
+      </div>
+    </div>
+
+
+
+  </fieldset>
+<% end -%>

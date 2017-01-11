@@ -1,0 +1,56 @@
+<%= form_tag "/update_recipe",class: "form-horizontal" ,:multipart => true do -%>
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>Add Dish</legend>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="title">Dish Name</label>
+        <div class="col-md-4">
+          <input id="recipe_name" name="recipe[recipe_name]"  value="<%= @recipe_details.recipe_name %>" class="form-control input-md" required="" type="text">
+
+        </div>
+      </div>
+
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="selectbasic">Choose category</label>
+        <div class="col-md-4">
+          <select id="category" name="recipe[category_id]" class="form-control">
+            <% @categories.each do |c| %>
+                <option value=<%= "#{c.id}" %> selected="<% if c.id ==  @recipe_details.id %><% end %>"><%= c.category_type %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="content">Description</label>
+        <div class="col-md-4">
+            <textarea id="recipe_name" name="recipe[content]"  class="form-control input-md" required="" type="text"> <%= @recipe_details.content %>
+            </textarea>
+        </div>
+      </div>
+
+      <!-- File Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="filebutton">Image File</label>
+        <div class="col-md-4">
+          <input id="filebutton" name="recipe[recipe_img]"  class="input-file" type="file">
+        </div>
+      </div>
+
+      <input type="hidden" id="recipe_id" name="recipe[id]" value="<%= @recipe_details.id %>" class="input-xlarge">
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">update</button>
+        </div>
+      </div>
+
+
+
+    </fieldset>
+<% end -%>

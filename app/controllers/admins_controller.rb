@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
 
   def new_category_view
-
+    @all_category = Category.all
   end
 
   def create_category
@@ -12,6 +12,29 @@ class AdminsController < ApplicationController
     a=10
   end
 
+  def edit_category_view
+    @category_id = params[:category_id]
+    @categories = Category.where(id: @category_id).first
+  end
+
+   def update_category
+     category_id = params[:category][:id]
+     category_type = params[:category][:category_type]
+     Category.where(id: category_id).update_all(category_type: category_type )
+     a=1
+     redirect_to new_category_path, flash: {notice: " category sucessfully updated!!"}
+
+   end
+
+   def destroy_category
+     category_id = params[:category_id]
+     category_to_delete = Category.where(id: category_id).first
+     if category_to_delete.destroy
+       @is_deleted = true
+     else
+       @is_deleted = false
+     end
+   end
 
   private
 

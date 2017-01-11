@@ -17,7 +17,9 @@
       <nav class="collapse navbar-collapse navbar-ex1-collapse">
         <% if user_signed_in? -%>
             <ul class="nav navbar-nav navbar-right">
-
+              <li><a href="<%= list_recipe_path %>">My Recipe</a></li>
+              <li><a href="<%= new_category_path %>">New Category</a></li>
+              <li><a href="<%= new_recipe_path %>">New Recipe</a></li>
               <li><a href="<%= edit_user_registration_path %>">Account</a></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
             </ul>

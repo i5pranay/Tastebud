@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="row">
+        <div class="col-lg-12">
+          <%= image_tag @show_recipe.recipe_img.url(:recipe_show)%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          </br>
+          </br>
+          <%= render partial: 'recipe_rating' , locals: {recipe_data: {id: params[:recipe_id] } } %>
+        </div>
+        <div class="col-lg-4" id="rating_value" style="margin-top: 65px; font-size: 32px; color: #c17e68;">
+          <%= @final_rating %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="col-lg-12">
+        <p><strong><%= @show_recipe[:recipe_name] %></strong></p></br>
+      </div>
+      <div class="col-lg-12">
+        <p><%= raw @show_recipe[:content] %></p></br>
+      </div>
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-4">
+            <%= link_to 'edit', form_edit_recipe_path %>
+          </div>
+          <div class="col-lg-4">
+            <%= link_to 'Remove', delete_recipe_path,
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div>
+      </br>
+      </br>
+      <hr>
+      <div class="col-lg-12">
+        <%= render 'disqus' %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $(".rating_dropdown").change(function (event) {
+        // get the target on which event happened
+        //debugger
+        select_box = event.target;
+
+        // get the details (recipe_id, rating_value) from this target
+        recipe_id = select_box.getAttribute("data-recipe_id");
+        rating_value = select_box.value;
+
+        // make ajax call to the server
+        $.ajax(
+            {
+              type: 'POST',
+              url:  "/rate_recipe",
+              data: { rating: { recipe_id: recipe_id, rating_value: rating_value} },
+              success: function(response) {
+                // in ajax response get the new overall rating for the recipe
+                // update the rating value
+                alert("recived data from backend" + response);
+                $("#rating_value").empty().append("<p>" + response.avg_rating + "</p>")
+              }
+            }
+        );
+      }
+  );
+
+</script>

@@ -1,0 +1,20 @@
+<fieldset>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Recipe name</th>
+      <th> Show </th>
+    </tr>
+    </thead>
+    <% @all_recipe.each do |rec|%>
+        <tr id="row_<%= rec.id.to_s %>">
+          <td><%= rec.recipe_name %> </td>
+          <td><%= link_to 'Show', show_recipe_path(:recipe_id => rec.id.to_s) %></td> </td>
+     </tr>
+        <% end %>
+    <tbody>
+
+    </tbody>
+    </table>
+  </fieldset>

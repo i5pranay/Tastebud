@@ -1,4 +1,4 @@
-<%= form_tag @create_recipe ,class: "form-horizontal" ,:html => {:multipart => true} do -%>
+<%= form_tag "/create_recipe",class: "form-horizontal" ,:multipart => true do -%>
   <fieldset>
 
     <!-- Form Name -->
@@ -29,8 +29,11 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="content">Description</label>
           <div class="col-md-4">
-            <textarea id="recipe_name" type="text" name="recipe[content]" placeholder="Write your recipe" class="form-control input-md" required="" type="text">
+            <textarea id="recipe_name" type="text" name="recipe[content]"  class="form-control input-md" required="" type="text">
             </textarea>
+            <script>
+              CKEDITOR.replace( 'recipe[content]' );
+            </script>
           </div>
         </div>
 
@@ -51,4 +54,6 @@
 
 
   </fieldset>
+
+    <script src="//cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
 <% end -%>

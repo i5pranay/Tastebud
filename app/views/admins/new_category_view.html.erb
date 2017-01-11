@@ -20,5 +20,48 @@
       </div>
 
     </fieldset>
+    <br>
+
+    <fieldset>
+
+      <table>
+        <thead>
+        <tr>
+          <th>Category</th>
+          <th> Edit</th>
+          <th> Remove </th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @all_category.each do |cat|%>
+        <tr id="row_<%= cat.id.to_s %>">
+          <td> <%= cat.category_type %> </td>
+          <td> <a href="/edit_category?category_id=<%= cat.id.to_s%>">Edit</a></td>
+          <td><a href="/delete_category?category_id=<%= cat.id.to_s%>" data-remote="true" data-method="delete">Remove</a></td>
+        </tr>
+            <% end %>
+            </tbody>
+      </table>
+    </fieldset>
+    </br>
+
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+
 <% end -%>
 

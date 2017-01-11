@@ -1,0 +1,25 @@
+<%= form_tag "/update_category",  class: "form-horizontal" do -%>
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>category</legend>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="category">Create Category</label>
+        <div class="col-md-4">
+          <input id="category" name=category[category_type] value="<%= @categories.category_type %>" class="form-control input-md" required="" type="text">
+          <input type="hidden" id="category_id" name="category[id]" value="<%= @categories.id %>" class="input-xlarge">
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </fieldset>
+    <br>
+
+
+<% end -%>

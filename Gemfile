@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '~> 4.1', '>= 4.1.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'paperclip', '~> 5.1'
+gem 'ckeditor', '~> 4.1', '>= 4.1.6'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

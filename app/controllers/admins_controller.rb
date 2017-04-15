@@ -1,5 +1,14 @@
 class AdminsController < ApplicationController
 
+
+
+  #user profile routes
+
+  def show_my_profile
+    @user = User.find_by(id: current_user.id)
+
+  end
+
   def new_category_view
     @all_category = Category.all
   end

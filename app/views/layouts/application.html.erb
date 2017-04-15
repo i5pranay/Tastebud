@@ -7,8 +7,18 @@
   <%= csrf_meta_tags %>
 
   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<!-- web template headers -->
+
+<!-- web template headers end -->
+
 </head>
 <body>
+
+<!-- banner of template -->
+
+<!-- banner of template -->
+
+
 
 <header class="navbar navbar-default" role="navigation">
   <div class="navbar-inner">
@@ -17,10 +27,14 @@
       <nav class="collapse navbar-collapse navbar-ex1-collapse">
         <% if user_signed_in? -%>
             <ul class="nav navbar-nav navbar-right">
+              <li><a href="<%= myfriends_path %>">Add Friends</a></li>
+              <li><a href="<%= myfriendslist_path %>">My Friends</a></li>
+              <li><a href="<%= myprofile_path %>">My Profile</a></li>
               <li><a href="<%= list_recipe_path %>">My Recipe</a></li>
               <li><a href="<%= new_category_path %>">New Category</a></li>
               <li><a href="<%= new_recipe_path %>">New Recipe</a></li>
               <li><a href="<%= edit_user_registration_path %>">Account</a></li>
+              <li><a>Signed in as <strong><%= current_user.name %></strong></a></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
             </ul>
             </li>
@@ -44,7 +58,13 @@
       <div id="content" class="col-md-9 center-block">
 
   <% end %>
+  <div class = "container">
   <%= yield %>
+  <!-- testing template -->
+
+  
+  <!-- testing template -->
+      </div>
   </div>
   </div>
 </div>

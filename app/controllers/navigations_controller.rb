@@ -8,7 +8,6 @@ class NavigationsController < ApplicationController
 
   def new_recipe_view
     @categories = Category.select(:id, :category_type).all();
-    a=1
 
   end
 
@@ -30,7 +29,6 @@ class NavigationsController < ApplicationController
     @categories = Category.select(:id, :category_type).all();
     @recipe_id = params[:recipe_id]
     @recipe_details = Recipe.where(id: @recipe_id).first
-    a=1
   end
 
   def update_recipe
@@ -49,7 +47,7 @@ class NavigationsController < ApplicationController
   end
 
   def list_my_recipe
-    @all_recipe = Recipe.all
+    @all_recipe = Recipe.where(user_id: current_user.id)
   end
 
   def destroy_recipe

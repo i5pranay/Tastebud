@@ -1,5 +1,5 @@
 class Recipe < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_one :categories
   belongs_to :category
   has_many :recipe_img

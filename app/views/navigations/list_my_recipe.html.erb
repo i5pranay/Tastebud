@@ -1,20 +1,22 @@
 <fieldset>
 
-  <table>
-    <thead>
-    <tr>
-      <th>Recipe name</th>
-      <th> Show </th>
-    </tr>
-    </thead>
-    <% @all_recipe.each do |rec|%>
-        <tr id="row_<%= rec.id.to_s %>">
-          <td><%= rec.recipe_name %> </td>
-          <td><%= link_to 'Show', show_recipe_path(:recipe_id => rec.id.to_s) %></td> </td>
-     </tr>
-        <% end %>
-    <tbody>
 
-    </tbody>
-    </table>
+
+
+    <% @all_recipe.each do |rec|%>
+
+      <div class="col-md-3" id="div_<%= rec.id.to_s %>">
+        <div class="recipe_box" >
+          <div class ="image_wrapper">
+       <a href=  " <%= show_recipe_path(:recipe_id => rec.id.to_s) %>" class="img">
+         <%= image_tag rec.recipe_img.url(:recipe_show), class: "recipe_index_dimension" %> </a>
+          <h3> <a href= "<%= show_recipe_path(:recipe_id => rec.id.to_s) %>" ><%= rec.recipe_name %> </a></h3>
+          </div>
+          </div>
+      </div>
+      <% end %>
+
+
+
+
   </fieldset>

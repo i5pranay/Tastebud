@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
@@ -6,6 +8,20 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'navigations#home'
+
+  #friendship routes
+  #resources :friendships
+  match "my_friends" => "friendships#index", :via => 'get',:as => "myfriends"
+  #match 'add_friend/:friend_id' => 'friendships#create', :via => 'post', :as => 'addfriend'
+  post 'add_friend', to: 'friendships#create'
+  match 'current_user_friends' => 'friendships#show', :via => 'get', :as => 'myfriendslist'
+  match 'remove_friend' => 'friendships#destroy', :via => 'delete' ,:as => "removefriend"
+
+
+
+  #myprofile
+  match "my_profile" => "admins#show_my_profile", :via => 'get',:as => "myprofile"
+
 
   #routes for category of food
   match "new_category" => "admins#new_category_view", :via => 'get',:as => "new_category"
@@ -25,6 +41,8 @@ Rails.application.routes.draw do
   match "delete_recipe/:recipe_id" => "navigations#destroy_recipe", :via => 'delete', :as => "delete_recipe"
   match "list_my_recipe" => "navigations#list_my_recipe", :via => 'get', :as => "list_recipe"
   match "rate_recipe" => "navigations#rate_recipe", :via => 'post'
+
+  #facebook omniouth
 
 
 

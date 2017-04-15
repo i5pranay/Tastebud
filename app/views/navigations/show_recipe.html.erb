@@ -12,8 +12,9 @@
           </br>
           <%= render partial: 'recipe_rating' , locals: {recipe_data: {id: params[:recipe_id] } } %>
         </div>
-        <div class="col-lg-4" id="rating_value" style="margin-top: 65px; font-size: 32px; color: #c17e68;">
-          <%= @final_rating %>
+
+        <div class="col-lg-4" id="rating_value" data-score="<%= @final_rating %>" style="margin-top: 62px; font-size: 11px; color: #c17e68;">
+         <p style="font-size: 14px;">Average Rating</p>
         </div>
       </div>
     </div>
@@ -38,7 +39,10 @@
       </div>
       </br>
       </br>
+      </br>
       <hr>
+      </br>
+      </br>
       <div class="col-lg-12">
         <%= render 'disqus' %>
       </div>
@@ -74,5 +78,16 @@
         );
       }
   );
+
+</script>
+
+<script>
+  $('#rating_value').raty({
+    readOnly: true,
+    path: "/assets/",
+    score:function () {
+      return $(this).attr('data-score');}
+  });
+
 
 </script>

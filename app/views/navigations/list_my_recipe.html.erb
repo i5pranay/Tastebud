@@ -1,8 +1,5 @@
+<div class="container-fluid" id="contain">
 <fieldset>
-
-
-
-
     <% @all_recipe.each do |rec|%>
 
       <div class="col-md-3" id="div_<%= rec.id.to_s %>">
@@ -15,8 +12,17 @@
           </div>
       </div>
       <% end %>
-
-
-
-
   </fieldset>
+  </div>
+  <style type="text/css">
+    .container-fluid{
+          padding:35px;
+    }
+    body { 
+    background: url(http://i1.wp.com/blog.holachef.com/wp-content/uploads/2015/05/bigstock-Spices-44116264.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  </style>

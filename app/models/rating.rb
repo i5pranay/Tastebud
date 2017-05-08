@@ -1,4 +1,5 @@
 class Rating < ActiveRecord::Base
-  belongs_to :recipe, dependent: :destroy
-  belongs_to  :user,  dependent: :destroy
+  has_many :recipes, dependent: :destroy
+  has_many  :users,  dependent: :destroy
+  has_many :notifications, as: :notifiable
 end

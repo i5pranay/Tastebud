@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <!-- Select Basic -->
+      <!-- Select Basic --> 
       <div class="form-group">
         <label class="col-md-4 control-label" for="selectbasic">Choose category</label>
         <div class="col-md-4">
@@ -31,6 +31,9 @@
         <div class="col-md-4">
             <textarea id="recipe_name" name="recipe[content]"  class="form-control input-md" required="" type="text"> <%= @recipe_details.content %>
             </textarea>
+             <script>
+              CKEDITOR.replace( 'recipe[content]' );
+            </script>
         </div>
       </div>
 

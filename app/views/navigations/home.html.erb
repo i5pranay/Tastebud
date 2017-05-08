@@ -1,1 +1,78 @@
-helllo
+<div class="jumbotron" >
+  <div class="container">
+  <h1>Welcome to Tastebud</h1>
+  <p><bold>"Come hungry,Leave happy Delicious food to suit your lifestyle"</bold></p>
+    <br>
+
+      <div class="input-group ">
+
+        <%= form_tag(list_all_recipe_path, :method => "get", id: "search-form", class: "form-control") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Recipes" %>
+            <%= submit_tag "Search", :name => nil %>
+            <% end %>
+      </div>
+      <br>
+      <br>
+      <p><a class="btn btn-primary btn-lg" href="<%= about_us_path %>" role="button">About Us</a></p>
+
+    </div>
+</div>
+<style>
+  .navbar {
+    margin-bottom: 0px;
+
+
+  }
+
+  .container .jumbotron, .container-fluid .jumbotron {
+    padding-left: 125px;
+    padding-right: 590px;
+  }
+  .container .jumbotron, .container-fluid .jumbotron {
+    border-radius: 0px;
+  }
+  .jumbotron {
+
+    background-color: rgba(23, 41, 47, 0.09);
+  }
+    .jumbotron
+    {
+      margin-left: -127px;
+      margin-right: -97px;
+
+    height: 100vh;
+    color: #f5f5f5;
+    }
+
+  .input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: none;
+    width: 100%;
+    margin-bottom: -5px;
+  }
+    #search-form {
+      font-size: 20px;
+      line-height: 1.42857143;
+      color: #555555;
+      padding: 0px 0px;
+      background-color: #b75c0c;;
+      background-image: none;
+      border: 0px;
+    }
+
+    .jumbotron {
+background-image: url("http://spicolisbarleybin.com/wp-content/uploads/2015/12/delicious-food-wallpaper-wide-f330v8-650x406.jpg");
+background-size: cover;}
+
+.container h1{
+font-family: monospace;
+}
+.container p{
+font-family: sans-serif;
+color:#FFFFFF;
+}
+
+
+
+</style>

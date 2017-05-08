@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   mount Ckeditor::Engine => '/ckeditor'
@@ -41,8 +43,20 @@ Rails.application.routes.draw do
   match "delete_recipe/:recipe_id" => "navigations#destroy_recipe", :via => 'delete', :as => "delete_recipe"
   match "list_my_recipe" => "navigations#list_my_recipe", :via => 'get', :as => "list_recipe"
   match "rate_recipe" => "navigations#rate_recipe", :via => 'post'
+  match "list_all_recipe" => "navigations#list_all_recipe", :via => 'get', :as => "list_all_recipe"
+  #routes for about us
+  match "about_us" => "admins#about_us", :via => 'get'
 
   #facebook omniouth
+
+  #notifications
+
+  resources :notifications do 
+    collection do
+      post :mark_as_read
+    end
+  end
+  
 
 
 

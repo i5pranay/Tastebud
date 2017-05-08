@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
 
 
-
+  before_filter :authenticate_user!, except: [:about_us]
   #user profile routes
 
   def show_my_profile
@@ -16,6 +16,21 @@ class AdminsController < ApplicationController
   def create_category
     @category=Category.new(category_params)
     @category.save
+
+
+    #============================notification=========================
+
+  
+    followed = current_user.friends
+    following = current_user.inverse_friends
+    friends = followed + following
+
+    friends.uniq.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "Added category", notifiable: @category)
+
+    end
+
+    #=================================================================
    # render :new_category_view ,flash: {notice: "centre successfully updated"}
     redirect_to new_category_path ,flash: {notice: "category successfully updated"}
     a=10
@@ -44,6 +59,10 @@ class AdminsController < ApplicationController
        @is_deleted = false
      end
    end
+
+  def about_us
+
+  end
 
   private
 

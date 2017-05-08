@@ -10,9 +10,12 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   has_many :recipes
-  has_many :ratings
+  belongs_to :rating
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   #facebook omniouth
+
+  #notificaation
+  has_many :notifications, foreign_key: :recipient_id
 
 end

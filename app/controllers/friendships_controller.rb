@@ -15,6 +15,20 @@ before_action :authenticate_user!
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
+
+    #============================notification=========================
+
+  
+    followed = current_user.friends
+    following = current_user.inverse_friends
+    friends = followed + following
+
+    friends.uniq.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "added friend", notifiable: @friendship)
+
+    end
+
+    #=================================================================
       flash[:notice] = "Added friend."
       redirect_to root_url
     else

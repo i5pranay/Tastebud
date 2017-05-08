@@ -261,6 +261,7 @@ DEPENDENCIES
   ckeditor (~> 4.1, >= 4.1.6)
   coffee-rails (~> 4.1.0)
   devise (~> 4.1, >= 4.1.1)
+  execjs
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

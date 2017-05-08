@@ -19,61 +19,61 @@
           <div class="col-xs-12">
             <div class="input-group c-search">
               <input type="text" class="form-control" id="contact-list-search">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
-                            </span>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
+              </span>
             </div>
           </div>
         </div>
         <ul class="list-group" id="contact-list">
-        <% @user.each do |friendship| %>
+          <% @user.each do |friendship| %>
 
           
           <li class="list-group-item">
-             <% profilegender= friendship.gender.to_s %>
-            
-          <% if profilegender.casecmp('female').zero? %>
-            <div class="col-xs-12 col-sm-3">
+           <% profilegender= friendship.gender.to_s %>
+
+           <% if profilegender.casecmp('female').zero? %>
+           <div class="col-xs-12 col-sm-3">
             <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" alt="Scott Stevens" class="img-responsive img-circle" />
-              </div>
-            
-              <%else%>
-                <div class="col-xs-12 col-sm-3">
-               <img src="https://materiell.com/wp-content/uploads/2015/04/deven-full1.png" alt="Scott Stevens" class="img-responsive img-circle" />
-            </div>
-                <%end%>
-            <div class="col-xs-12 col-sm-9">
-              <span class="name"><%=friendship.name %></span><br/>
-              <!-- adding friend -->
-              <% if current_user.friends.include?(friendship)%>
-               <a href="<%= removefriend_path(friend_id: friendship.id) %>"  data-method="post">  <span class="glyphicon glyphicon-minus text-muted c-info" data-toggle="tooltip" title="Remove friend"></span></a>
-              <span class="visible-xs"> <span class="text-muted"> Remove Friend</span><br/></span>
-              <% else %>
+          </div>
 
-            <a href="<%= add_friend_path(friend_id: friendship.id)  %>"  data-method="post" >  <span class="glyphicon glyphicon-plus-sign text-muted c-info" data-toggle="tooltip" title="Add Friend"></span></a>
-              <span class="visible-xs"> <span class="text-muted"> Add friend</span><br/></span>
-              <%end%>
-              <!--<span class="glyphicon glyphicon-earphone text-muted c-info" data-toggle="tooltip" title="(870) 288-4149"></span>-->
-              <!--<span class="visible-xs"> <span class="text-muted">(870) 288-4149</span><br/></span>-->
-              <span class="glyphicon glyphicon-envelope text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
-              <span class="visible-xs"> <span class="text-muted">scott.stevens@example.com</span><br/></span>
-            </div>
+          <%else%>
+          <div class="col-xs-12 col-sm-3">
+           <img src="https://materiell.com/wp-content/uploads/2015/04/deven-full1.png" alt="Scott Stevens" class="img-responsive img-circle" />
+         </div>
+         <%end%>
+         <div class="col-xs-12 col-sm-9">
+          <span class="name"><%=friendship.name %></span><br/>
+          <!-- adding friend -->
+          <% if current_user.friends.include?(friendship)%>
+          <a href="<%= removefriend_path(friend_id: friendship.id) %>"  data-method="post">  <span class="glyphicon glyphicon-minus text-muted c-info" data-toggle="tooltip" title="Remove friend"></span></a>
+          <span class="visible-xs"> <span class="text-muted"> Remove Friend</span><br/></span>
+          <% else %>
 
-            
+          <a href="<%= add_friend_path(friend_id: friendship.id)  %>"  data-method="post" >  <span class="glyphicon glyphicon-plus-sign text-muted c-info" data-toggle="tooltip" title="Add Friend"></span></a>
+          <span class="visible-xs"> <span class="text-muted"> Add friend</span><br/></span>
+          <%end%>
+          <!--<span class="glyphicon glyphicon-earphone text-muted c-info" data-toggle="tooltip" title="(870) 288-4149"></span>-->
+          <!--<span class="visible-xs"> <span class="text-muted">(870) 288-4149</span><br/></span>-->
+          <span class="glyphicon glyphicon-envelope text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
+          <span class="visible-xs"> <span class="text-muted">scott.stevens@example.com</span><br/></span>
+        </div>
 
 
-            <div class="clearfix"></div>
-            <%end%>
-          </li>
-        </ul>
-      </div>
-    </div>
+
+
+        <div class="clearfix"></div>
+        <%end%>
+      </li>
+    </ul>
   </div>
+</div>
+</div>
 
 
 
-  <!-- JavaScrip Search Plugin -->
-  <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
+<!-- JavaScrip Search Plugin -->
+<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 
 </div>
 
@@ -168,7 +168,18 @@
     padding: 5px 10px;
     font-size: 1.25em;
   }
+.row {
+    padding:50px;
+    
+}
 
+body { 
+    background: url(https://foodandtravelling.files.wordpress.com/2015/01/332051.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 </style>
 
 <script>
@@ -182,38 +193,38 @@
 
    // $('[data-toggle="tooltip"]').tooltip();
 
-    $('#fullscreen').on('click', function(event) {
-      event.preventDefault();
-      window.parent.location = "http://bootsnipp.com/iframe/4l0k2";
-    });
-    $('a[href="#cant-do-all-the-work-for-you"]').on('click', function(event) {
-      event.preventDefault();
-      $('#cant-do-all-the-work-for-you').modal('show');
-    })
-
-    $('[data-command="toggle-search"]').on('click', function(event) {
-      event.preventDefault();
-      $(this).toggleClass('hide-search');
-
-      if ($(this).hasClass('hide-search')) {
-        $('.c-search').closest('.row').slideUp(100);
-      }else{
-        $('.c-search').closest('.row').slideDown(100);
-      }
-    })
-
-    $('#contact-list').searchable({
-      searchField: '#contact-list-search',
-      selector: 'li',
-      childSelector: '.col-xs-12',
-      show: function( elem ) {
-        elem.slideDown(100);
-      },
-      hide: function( elem ) {
-        elem.slideUp( 100 );
-      }
-    })
+   $('#fullscreen').on('click', function(event) {
+    event.preventDefault();
+    window.parent.location = "http://bootsnipp.com/iframe/4l0k2";
   });
+   $('a[href="#cant-do-all-the-work-for-you"]').on('click', function(event) {
+    event.preventDefault();
+    $('#cant-do-all-the-work-for-you').modal('show');
+  })
+
+   $('[data-command="toggle-search"]').on('click', function(event) {
+    event.preventDefault();
+    $(this).toggleClass('hide-search');
+
+    if ($(this).hasClass('hide-search')) {
+      $('.c-search').closest('.row').slideUp(100);
+    }else{
+      $('.c-search').closest('.row').slideDown(100);
+    }
+  })
+
+   $('#contact-list').searchable({
+    searchField: '#contact-list-search',
+    selector: 'li',
+    childSelector: '.col-xs-12',
+    show: function( elem ) {
+      elem.slideDown(100);
+    },
+    hide: function( elem ) {
+      elem.slideUp( 100 );
+    }
+  })
+ });
 
 
 </script>

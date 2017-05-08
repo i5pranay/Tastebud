@@ -7,66 +7,147 @@
   <%= csrf_meta_tags %>
 
   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<!-- web template headers -->
+  <!-- web template headers -->
 
-<!-- web template headers end -->
+  <!-- web template headers end -->
 
 </head>
 <body>
 
-<!-- banner of template -->
+  <!-- banner of template -->
 
-<!-- banner of template -->
+  <!-- banner of template -->
 
 
 
-<header class="navbar navbar-default" role="navigation">
-  <div class="navbar-inner">
-    <div class="container">
-      <div id="logo" class="navbar-brand"><%= link_to "Tastebud", root_path %></div>
-      <nav class="collapse navbar-collapse navbar-ex1-collapse">
-        <% if user_signed_in? -%>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="<%= myfriends_path %>">Add Friends</a></li>
-              <li><a href="<%= myfriendslist_path %>">My Friends</a></li>
-              <li><a href="<%= myprofile_path %>">My Profile</a></li>
-              <li><a href="<%= list_recipe_path %>">My Recipe</a></li>
-              <li><a href="<%= new_category_path %>">New Category</a></li>
-              <li><a href="<%= new_recipe_path %>">New Recipe</a></li>
-              <li><a href="<%= edit_user_registration_path %>">Account</a></li>
-              <li><a>Signed in as <strong><%= current_user.name %></strong></a></li>
-              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-            </ul>
-            </li>
-            </ul>
-        <% else -%>
-            <ul class="nav navbar-nav pull-right">
+  <header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <div id="logo" class="navbar-brand"><%= link_to "Tastebud", root_path %></div>
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+          <% if user_signed_in? -%>
+
+          <ul class="nav navbar-nav navbar-right" id="myheader">
+
+
+
+
+
+
+            <li><a href="<%= myfriends_path %>">Add Friends</a></li>
+            <li><a href="<%= myfriendslist_path %>">My Friends</a></li>
+            <li><a href="<%= list_recipe_path %>">My Recipe</a></li>
+            <li><a href="<%= new_category_path %>">New Category</a></li>
+            <li><a href="<%= new_recipe_path %>">New Recipe</a></li>
+
+            <!-- notification starts -->
+
+            <li class="dropdown" data-behavior="notifications">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left: 10px; padding-right: 18px; margin-right: 3px;" aria-expanded="true">
+                <i class="glyphicon glyphicon-bell"></i>
+                <b class="caret" ></b> </a><span data-behavior="unread-count"></span>   
+                <ul class="dropdown-menu" style="margin-top: -1px;" data-behavior="notification-items">
+                 <li><a>Prashant posted recipe</a></li>
+
+                </ul>
+              </li>
+
+              <!-- notification ends -->
+              <!-- dropdown for profile -->
+            <li><a>Signed in as <strong><%= current_user.name %></strong></a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left: 10px; padding-right: 18px; margin-right: 3px;" aria-expanded="true">
+                  <b class="caret" ></b> </a>
+                  <ul class="dropdown-menu" style="margin-top: -1px;">
+                   <li><a href="<%= myprofile_path %>">My Profile</a></li>
+                   <li><a href="<%= edit_user_registration_path %>">Account</a></li>
+                   <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+                 </ul>
+               </li>
+             </ul>
+             <% else -%>
+             <ul class="nav navbar-nav pull-right">
               <li><a id="head" href="<%= new_user_registration_path %>">Sign up</a></li>
               <li><a id="head" href="<%= new_user_session_path %>">Sign in</a></li>
+              <li><a id="head" href="<%= about_us_path %>">AboutUS</a></li>
             </ul>
-        <% end -%>
-      </nav>
-    </div>
-  </div>
-</header>
+            <% end -%>
+          </nav>
+        </div>
+      </div>
+    </header>
 
-<div id="main_content" class="container">
-  <% flash.each do |name, msg| %>
+    <div id="main_content" class="container">
+      <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert alert-info") %>
 
       <div id="tastebud_messages"></div>
       <div id="content" class="col-md-9 center-block">
 
-  <% end %>
-  <div class = "container">
-  <%= yield %>
-  <!-- testing template -->
+        <% end %>
+        <div class = "container">
+          <%= yield %>
+          <!-- testing template -->
 
-  
-  <!-- testing template -->
+
+          <!-- testing template -->
+        </div>
       </div>
+    </div>
   </div>
-  </div>
-</div>
 </body>
 </html>
+<% if user_signed_in? -%>
+<script>
+
+  $(document).ready(function () {
+    <% if current_user.notifications.present? && current_user.notifications.count > 0 %>
+
+
+    $.ajax({
+      method: 'GET',
+      url: "/notifications.json",
+      dataType: "JSON",
+      success: function(data) {
+
+        var items;
+        items = $.map(data, function(notification) {
+          "<li><a>" + notification.actor + " " + notification.action + " " + notification.notifiable.type + "</a></li>";
+          $("[data-behavior='unread-count']").text(items.length);
+          return $("[data-behavior='notification-items']").html(items);
+        });
+
+      }
+
+
+    });
+
+    <% end %>
+  });
+</script>
+<%end%>
+
+<style>
+  .navbar-brand a{
+
+    color: #f5f5f5;
+    text-decoration: none;
+  }
+
+.dropdown-menu{
+   background-color: #286090;
+}
+
+  nav.collapse.navbar-collapse.navbar-ex1-collapse a {
+   color: white;  
+ }
+
+ .navbar {
+  margin-bottom: 0px;
+  margin-bottom: 0px;
+  background-color: #286090;
+  border-radius: 0px;
+  border: 0px;
+  font-family: -webkit-pictograph;
+} 
+</style>

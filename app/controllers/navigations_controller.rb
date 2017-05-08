@@ -13,7 +13,21 @@ class NavigationsController < ApplicationController
 
   def create_recipe
     @recipe=Recipe.new(persist_recipe_params)
-    @recipe.save
+    @recipe.save!
+
+    #============================notification=========================
+
+  
+    followed = current_user.friends
+    following = current_user.inverse_friends
+    friends = followed + following
+
+    friends.uniq.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @recipe)
+
+    end
+
+    #=================================================================
     # render :new_category_view ,flash: {notice: "centre successfully updated"}
     redirect_to show_recipe_path(:recipe_id => @recipe.id)
     a=10
@@ -60,7 +74,22 @@ class NavigationsController < ApplicationController
   def rate_recipe
     # persist the new data in db
     rating = Rating.new(persist_rating_params)
-    rating.save
+    rating.save!
+
+
+    #============================notification=========================
+
+  
+    followed = current_user.friends
+    following = current_user.inverse_friends
+    friends = followed + following
+
+    friends.uniq.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "rated", notifiable: rating)
+
+    end
+
+    #=================================================================
 
     # calculate the new average rating
 
@@ -83,6 +112,15 @@ class NavigationsController < ApplicationController
     a=0
     final_rating = total_rating.to_f / all_ratings.size
   end
+
+   def list_all_recipe
+     if params[:search]
+       @all_recipe = Recipe.search(params[:search]).order("created_at DESC")
+     else
+       @all_recipe = Recipe.all.order("created_at DESC")
+     end
+
+   end
 
 
   private
